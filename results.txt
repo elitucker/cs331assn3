@@ -1,0 +1,60 @@
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+

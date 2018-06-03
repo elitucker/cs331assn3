@@ -7,10 +7,12 @@
 #include<fstream>
 #include<math.h>
 #include<stdio.h>
+#include<set>
+#include<iterator>
 
 using namespace std;
 
-bool isInVocab(vector<string> vocabulary, string word)
+/*bool isInVocab(vector<string> vocabulary, string word)
 {
 	bool result = 0;
 	for (int i = 0; i < vocabulary.size(); i++)
@@ -19,7 +21,7 @@ bool isInVocab(vector<string> vocabulary, string word)
 	
 		
 	return result;
-}
+}*/
 
 float probabilityOfRecordsWithClassAndSentence(int _class, vector<int> sentence, vector<vector<int> > training_data, int end_of_training)
 {
@@ -64,7 +66,7 @@ int main (int argc, char** argv)
 	training_data.open(argv[1]);
 	testing_data.open(argv[2]);
 	
-	vector<string> vocabulary;
+	set<string> vocabulary;
 	string line, result;
 	string::size_type i;
 	
@@ -72,6 +74,7 @@ int main (int argc, char** argv)
 	
 	while(!training_data.eof())
 	{
+    result = "";
 		getline(training_data, line);
 		i = line.find("\t");
 		if (i != string::npos)
@@ -82,13 +85,14 @@ int main (int argc, char** argv)
 			string sub;
 			iss >> sub;
 			transform(sub.begin(), sub.end(), sub.begin(), ::tolower);
-			if (!isInVocab(vocabulary, sub))
-				vocabulary.push_back(sub);
+		//	if (vocabulary.count(sub) == 0)
+				vocabulary.insert(sub); //insert on a set does this check for us
 		} while (iss);
 	}
-	
-	cout << "Sorting vocabulary alphabetically." << endl;
-	sort(vocabulary.begin(), vocabulary.end());
+	vocabulary.erase("0");
+  vocabulary.erase("1");
+	//cout << "Sorting vocabulary alphabetically." << endl;
+	//sort(vocabulary.begin(), vocabulary.end());
 	
 	vector<vector<int> > features;
 	vector<int> generated_class_labels;
@@ -96,6 +100,8 @@ int main (int argc, char** argv)
 	int class_label;
 	int end_of_training = 0;
 	int v_size = vocabulary.size();
+
+	//cout << v_size << endl;
 	
 	cout << "Generating features for training_data" << endl;
 	training_data.close();
@@ -104,52 +110,108 @@ int main (int argc, char** argv)
 	while (!training_data.eof())
 	{
 		vector<int> temp;
+    line_no_punct = "";
+    result = "";
+   
 		getline(training_data, line);
 		remove_copy_if(line.begin(), line.end(), back_inserter(line_no_punct), ptr_fun<int, int>(&ispunct));
-		sscanf(line_no_punct.c_str(), "%s %d", result.c_str(), &class_label);
+    if(line_no_punct[line_no_punct.size()-1] == '0'){
+      class_label = 0;
+    }
+    else{
+      class_label = 1;
+    }
+    line_no_punct[line_no_punct.size()-1] = ' ';
+    result = line_no_punct;
+		//sscanf(line_no_punct.c_str(), "%s \t %d", result.c_str(), &class_label);
+  // cout <<"line: "<<line<< " line no punct: " << line_no_punct << " class label: " << class_label << endl;
+  // cout << "result: " << result << endl;
+   
 		istringstream iss(result);
+    
+		temp.resize(v_size+1,0);
 		do {
 			string sub;
 			iss >> sub;
 			transform(sub.begin(), sub.end(), sub.begin(), ::tolower);
-			for (int j = 0; j < v_size; j++)
+      if(vocabulary.count(sub) == 1){
+			  int ind = distance(vocabulary.begin(), vocabulary.find(sub));
+			  if(temp[ind] == 0){
+				  temp[ind] = 1; 
+			  }
+      }
+			/*for (int j = 0; j < v_size; j++)
 			{
 				if (sub == vocabulary.at(j))
 					temp.push_back(1);
 				else
 					temp.push_back(0);
-			}
-			temp.push_back(class_label);
+			}*/
+			//temp.push_back(class_label);
 		} while (iss);
-		end_of_training++;
+   
+		temp[v_size] = class_label;
+
+		
 		features.push_back(temp);
 	}
+  
+   
+   /*for(int i=0; i<features.at(0).size(); i++){
+     cout << features.at(0).at(i) << " ";
+   }
+   cout << endl;*/
 	
-	if (training_data != testing_data)
-	{
+//	if (strcmp(argv[1], argv[2]) == 0) 
+	//{
 		cout << "Generating features for testing data" << endl;
-		while (!testing_data.eof())
-		{
-			vector<int> temp;
-			getline(testing_data, line);
-			remove_copy_if(line.begin(), line.end(), back_inserter(line_no_punct), ptr_fun<int, int>(&ispunct));
-			sscanf(line_no_punct.c_str(), "%s %d", result.c_str(), &class_label);
-			istringstream iss(result);
-			do {
-				string sub;
-				iss >> sub;
-				transform(sub.begin(), sub.end(), sub.begin(), ::tolower);
-				for (int j = 0; j < v_size; j++)
-				{
-					if (sub == vocabulary.at(j))
-						temp.push_back(1);
-					else
-						temp.push_back(0);
-				}
-				temp.push_back(class_label);
-			} while (iss);
-			features.push_back(temp);
-		}
+	while (!testing_data.eof())
+	{
+		vector<int> temp;
+    line_no_punct = "";
+    result = "";
+   
+		getline(testing_data, line);
+		remove_copy_if(line.begin(), line.end(), back_inserter(line_no_punct), ptr_fun<int, int>(&ispunct));
+    if(line_no_punct[line_no_punct.size()-1] == '0'){
+      class_label = 0;
+    }
+    else{
+      class_label = 1;
+    }
+    line_no_punct[line_no_punct.size()-1] = ' ';
+    result = line_no_punct;
+		//sscanf(line_no_punct.c_str(), "%s \t %d", result.c_str(), &class_label);
+  // cout <<"line: "<<line<< " line no punct: " << line_no_punct << " class label: " << class_label << endl;
+  // cout << "result: " << result << endl;
+   
+		istringstream iss(result);
+    
+		temp.resize(v_size+1,0);
+		do {
+			string sub;
+			iss >> sub;
+			transform(sub.begin(), sub.end(), sub.begin(), ::tolower);
+      if(vocabulary.count(sub) == 1){
+			  int ind = distance(vocabulary.begin(), vocabulary.find(sub));
+			  if(temp[ind] == 0){
+				  temp[ind] = 1; 
+			  }
+      }
+			/*for (int j = 0; j < v_size; j++)
+			{
+				if (sub == vocabulary.at(j))
+					temp.push_back(1);
+				else
+					temp.push_back(0);
+			}*/
+			//temp.push_back(class_label);
+		} while (iss);
+   
+		temp[v_size] = class_label;
+
+		end_of_training++;
+		features.push_back(temp);
 	}
 	
 	cout << "Generating predicted class labels." << endl;
@@ -165,31 +227,37 @@ int main (int argc, char** argv)
 		cout << "Feature " << i+1 << " of " << features.size() << " done." << endl;
 	}
 	
-	cout << "Printing results." << endl;
+	cout << "Printing results." <<  endl;
 	ofstream output_train, output_test;
 	output_train.open("preprocessed_train.txt");
 	output_test.open("preprocessed_test.txt");
 	
 	//print results
-	for (int i = 0; i < v_size; i++)
+	set<string>::iterator it;
+	for (it = vocabulary.begin(); it!=vocabulary.end(); it++)
 	{
-		output_train << vocabulary.at(i) << ", ";
-		output_test << vocabulary.at(i) << ", ";
+		output_train << *it << ", ";
+		output_test << *it << ", ";
 	}
 	output_train << "classlabel" << endl;
 	output_test << "classlabel" << endl;
 	for (int i = 0; i < end_of_training; i++)
 	{
-		for (int j = 0; j < features.at(i).size(); j++)
-		{
-			if (j = features.at(i).size() - 1)
+    //cout << "expected size: " << v_size + 1 << " actual size: " << features.at(i).size() << endl;
+		for (int j = 0; j < features.at(i).size(); ++j)
+		{ 
+      cout <<j << ", " << features.at(i).size() << ", " << (j < features.at(i).size()) << " ";
+			if (j = features.at(i).size() - 1){
 				output_train << features.at(i).at(j);
-			else
+      }
+			else{
 				output_train << features.at(i).at(j) << ", ";
+      } 
 		}
+    cout << endl;
 		output_train << endl;
 	}
-	for (int i = end_of_training + 1; i < features.size(); i++)
+	for (int i = 0 + 1; i < features.size(); i++)
 	{
 		for (int j = 0; j < features.at(i).size() - 1; j++)
 		{
@@ -214,7 +282,7 @@ int main (int argc, char** argv)
 	results << "Training file: " << argv[1] << endl;
 	results << "Testing file: " << argv[2] << endl;
 	results << "Number of correct predictions: " << correct_predictions << endl;
-	results << "Percent accuracy: " << correct_predictions/generated_class_labels.size() << endl << endl << endl;
+	results << "Percent accuracy: " << (float)(correct_predictions/generated_class_labels.size())*100 << "%"<< endl << endl << endl;
 	
 	training_data.close();
 	testing_data.close();
