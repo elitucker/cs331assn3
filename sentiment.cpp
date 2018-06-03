@@ -243,16 +243,19 @@ int main (int argc, char** argv)
 	output_test << "classlabel" << endl;
 	for (int i = 0; i < end_of_training; i++)
 	{
-    //cout << "expected size: " << v_size + 1 << " actual size: " << features.at(i).size() << endl;
-		for (int j = 0; j < features.at(i).size(); ++j)
+    
+    int j = 0;
+    int max = features.at(i).size();
+		while (j < max)
 		{ 
-      cout <<j << ", " << features.at(i).size() << ", " << (j < features.at(i).size()) << " ";
+      	cout <<j << ", " << features.at(i).size() << ", " << (j < features.at(i).size()) << " ";
 			if (j = features.at(i).size() - 1){
 				output_train << features.at(i).at(j);
-      }
+      	}
 			else{
 				output_train << features.at(i).at(j) << ", ";
-      } 
+      	}
+      	j++; 
 		}
     cout << endl;
 		output_train << endl;
