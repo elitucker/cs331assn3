@@ -1,139 +1,115 @@
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 0
-Percent accuracy: 0%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 0
-Percent accuracy: 0%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 490
-Percent accuracy: 0%
+Number of correct predictions: 245
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
+
+
+Training file: txt.txt
+Testing file: txt.txt
+Number of correct predictions: 4
+Percent accuracy: 57.1429%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
 Number of correct predictions: 245
-Percent accuracy: 49%
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 255
-Percent accuracy: 51%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 255
-Percent accuracy: 51%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 255
-Percent accuracy: 51%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 255
-Percent accuracy: 51%
+Number of correct predictions: 245
+Percent accuracy: 49.0982%
 
 
 Training file: trainingSet.txt
@@ -144,85 +120,193 @@ Percent accuracy: 50.9018%
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
+
+
+Training file: trainingSet.txt
+Testing file: trainingSet.txt
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
 
 
 Training file: trainingSet.txt
 Testing file: testSet.txt
-Number of correct predictions: 250
-Percent accuracy: 50.4032%
+Number of correct predictions: 246
+Percent accuracy: 49.5968%
+
+
+Training file: txt.txt
+Testing file: txt.txt
+Number of correct predictions: 3
+Percent accuracy: 42.8571%
+
+
+Training file: txt.txt
+Testing file: txt.txt
+Number of correct predictions: 0
+Percent accuracy: 0%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0
+Percent accuracy: -nan%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0
+Percent accuracy: -nan%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254
+Percent accuracy: 50.9018%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0
+Percent accuracy: -nan%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0
+Percent accuracy: -nan%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0 of 0
+Percent accuracy: -nan%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0 of 0
+Percent accuracy: -nan%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 254 of 499
+Percent accuracy: 50.9018%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 0 of 0
+Percent accuracy: -nan%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 255 of 500
+Percent accuracy: 51%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 255 of 500
+Percent accuracy: 51%
+
+
+Training file: trainingSet.txt
+Testing file: testSet.txt
+Number of correct predictions: 246 of 497
+Percent accuracy: 49.497%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
+
+
+Training file: exTrain.txt
+Testing file: exTest.txt
+Number of correct predictions: 1 of 1
+Percent accuracy: 100%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 255 of 500
+Percent accuracy: 51%
 
 
 Training file: trainingSet.txt
 Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
-
-
-Training file: trainingSet.txt
-Testing file: trainingSet.txt
-Number of correct predictions: 245
-Percent accuracy: 49.0982%
+Number of correct predictions: 255 of 500
+Percent accuracy: 51%
 
 

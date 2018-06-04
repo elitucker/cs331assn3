@@ -23,7 +23,7 @@ using namespace std;
 	return result;
 }*/
 
-long double probabilityOfRecordsWithClassAndSentence(int _class, vector<int> sentence, vector<int> prob_key1, vector<int> prob_key0, int end_of_training, int class_count, int v_size)
+long double probabilityOfRecordsWithClassAndSentence(int _class, vector<int> &sentence, vector<int> &prob_key1, vector<int> &prob_key0, int end_of_training, int class_count, int v_size)
 {
 	long double probability = 0;
 	long double records_with_both = 0;
@@ -31,7 +31,7 @@ long double probabilityOfRecordsWithClassAndSentence(int _class, vector<int> sen
 	//int class_count = 0;
 	vector<int> temp = sentence;
 	temp.at(temp.size() - 1) = _class;
-	for (int i = 0; i < temp.size()-1; i++)
+	for (int i = 1; i < v_size; i++)
 	{
 		records_with_both = 0;
 		records_with_one = 0;
@@ -43,7 +43,6 @@ long double probabilityOfRecordsWithClassAndSentence(int _class, vector<int> sen
       else{
         records_with_both = prob_key0.at(i);
       }
-      //cout << records_with_both << " ";
     }
     else{
       if(temp.at(i) == 1){
@@ -52,28 +51,25 @@ long double probabilityOfRecordsWithClassAndSentence(int _class, vector<int> sen
       else{
         records_with_both = prob_key0.at(i+v_size);
       }
+      //cout << records_with_both << " ";
     }
-    if(temp.at(i) == 1){
-      records_with_one = prob_key1.at(i) + prob_key1.at(i+v_size);
-    }
-    else{
-      records_with_one = prob_key0.at(i) + prob_key0.at(i+v_size);
-    }
+    //cout << records_with_both << " ";
+    records_with_one = class_count;
     //cout << records_with_one << " ";
-   // cout << (records_with_both + 1) <<" "<< (records_with_one + 2) << " " <<((records_with_both + 1) / (records_with_one + 2)) << endl;
-		probability += log(((records_with_both + 1) / (records_with_one + 2)));
+    //cout << (records_with_both + 1) <<" "<< (records_with_one + (v_size-1)) << " " <<log((records_with_both + 1) / (records_with_one + 2)) << " " << probability << endl;
+		probability += log(((records_with_both + 1) / (records_with_one + (v_size-1))));
 	}
 	probability += log((class_count / end_of_training + 1));
 	
-//	cout << probability << endl;
+	//cout << probability << endl;
 	return probability;
 }
 
 void fillProbKey1(vector<int> &prob_key, vector<vector<int> > training_data, int end_of_training, int v_size, int &num_class_0, int &num_class_1){
   for (int i = 0; i < end_of_training; i++){
-    for (int j = 0; j < training_data.at(i).size() - 1; j++){
+    for (int j = 1; j < v_size; j++){
       if(training_data.at(i).at(j) == 1){
-        if(training_data.at(i).at(training_data.size() - 1) == 0){
+        if(training_data.at(i).at(v_size) == 0){
           prob_key.at(j) += 1;
           
         }
@@ -93,9 +89,9 @@ void fillProbKey1(vector<int> &prob_key, vector<vector<int> > training_data, int
 }
 void fillProbKey0(vector<int> &prob_key, vector<vector<int> > training_data, int end_of_training, int v_size){
   for (int i = 0; i < end_of_training; i++){
-    for (int j = 0; j < training_data.at(i).size() - 1; j++){
+    for (int j = 1; j < v_size; j++){
       if(training_data.at(i).at(j) == 0){
-        if(training_data.at(i).at(training_data.size() - 1) == 0){
+        if(training_data.at(i).at(v_size) == 0){
           prob_key.at(j) += 1;
           
         }
@@ -123,7 +119,7 @@ int main (int argc, char** argv)
 	string line, result;
 	string::size_type i;
 	
-	cout << "Please allow one minute for data collection" << endl;
+	cout << "Data collection" << endl;
 	
 	while(!training_data.eof())
 	{
@@ -284,14 +280,16 @@ int main (int argc, char** argv)
  
 	cout << "Generating predicted class labels." << endl;
 	//generated class labels for features 6:05:05 6:06:25 6:08:50 6:11:10
-	for (int i = end_of_training+1; i < features.size(); i++)
+	for (int i = end_of_training; i < features.size(); i++)
 	{
-    long double prob1 = probabilityOfRecordsWithClassAndSentence(1, features.at(i), prob_key1, prob_key0, end_of_training, num_class_1, v_size); // WHY?!?!?!?!
+    long double prob1 = probabilityOfRecordsWithClassAndSentence(1, features.at(i), prob_key1, prob_key0, end_of_training, num_class_1, v_size);
     long double prob0 = probabilityOfRecordsWithClassAndSentence(0, features.at(i), prob_key1, prob_key0, end_of_training, num_class_0, v_size);
-    cout << prob1 << " " << prob0 << endl;
+    //cout << prob1 << " " << prob0 << endl;
 		if (prob1 > prob0) {
+      cout << 1 << endl;
 			generated_class_labels.push_back(1);
 		} else {
+      cout << 0 << endl;
 			generated_class_labels.push_back(0);
 		}
 		//cout << "Class " << i+1 << " of " << features.size() << " done." << endl;
@@ -304,7 +302,9 @@ int main (int argc, char** argv)
 	
 	//print results
 	set<string>::iterator it;
-	for (it = vocabulary.begin(); it!=vocabulary.end(); it++)
+  it = vocabulary.begin();
+  it++;
+	for (it = it; it!=vocabulary.end(); it++)
 	{
 		output_train << *it << ", ";
 		output_test << *it << ", ";
@@ -314,7 +314,7 @@ int main (int argc, char** argv)
 	for (int i = 0; i < end_of_training; i++)
 	{
     
-    int j = 0;
+    int j = 1;
     int max = features.at(i).size();
 		while (j < max)
 		{ 
@@ -330,12 +330,12 @@ int main (int argc, char** argv)
     //cout << endl;
 		output_train << endl;
 	}
-	for (int i = end_of_training + 1; i < features.size(); i++)
+	for (int i = end_of_training; i < features.size(); i++)
 	{
-		for (int j = 0; j < features.at(i).size() - 1; j++)
+		for (int j = 1; j < features.at(i).size(); j++)
 		{
-			if (j == features.at(i).size() - 2)
-				output_test << generated_class_labels.at(((i-end_of_training)-1));
+			if (j == features.at(i).size() - 1)
+				output_test << generated_class_labels.at((i-end_of_training));
 			else
 				output_test << features.at(i).at(j) << ", ";
 		}
@@ -345,7 +345,7 @@ int main (int argc, char** argv)
 	long double correct_predictions = 0.0;
 	for (int i = 0; i < generated_class_labels.size(); i++)
 	{
-		if (generated_class_labels.at(i) == features.at(i+end_of_training).at(features.at(i+end_of_training).size() - 1))
+		if (generated_class_labels.at(i) == features.at(i+end_of_training).at(v_size))
 			correct_predictions++;
 	}
 	
@@ -354,7 +354,7 @@ int main (int argc, char** argv)
 	results.open("results.txt", ofstream::app);
 	results << "Training file: " << argv[1] << endl;
 	results << "Testing file: " << argv[2] << endl;
-	results << "Number of correct predictions: " << correct_predictions << endl;
+	results << "Number of correct predictions: " << correct_predictions << " of " << generated_class_labels.size()<< endl;
 	results << "Percent accuracy: " << (correct_predictions/generated_class_labels.size())*100 << "%"<< endl << endl << endl;
 	
 	training_data.close();
